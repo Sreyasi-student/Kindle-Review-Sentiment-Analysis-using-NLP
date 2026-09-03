@@ -1,4 +1,4 @@
-# Kindle Review Sentiment
+# Kindle Review Sentiment Analysis using NLP
 
 Binary sentiment classification (rating > 3 = positive) on Amazon Kindle
 reviews, comparing Bag-of-Words, TF-IDF, and Averaged Word2Vec features
