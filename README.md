@@ -5,19 +5,6 @@ reviews, comparing Bag-of-Words, TF-IDF, and Averaged Word2Vec features
 across Gaussian Naive Bayes, Multinomial Naive Bayes, AdaBoost, and
 Random Forest.
 
-## What was fixed vs. the original notebooks
-
-| Issue | Where | Fix |
-|---|---|---|
-| **Data leakage**: Word2Vec trained on train+test combined before the split | `AvgWord2Vec.ipynb` | Split happens first; Word2Vec is fit **only** on `X_train` tokens |
-| Wrong Naive Bayes variant for sparse count/TF-IDF features | `BoW.ipynb`, `TF-IDF.ipynb` | `GaussianNB` → `MultinomialNB` |
-| `max_features='auto'` (removed in sklearn ≥1.3) | `AvgWord2Vec.ipynb` | Replaced with `'sqrt'` / `'log2'` |
-| `RandomizedSearchCV` best params found but never used | `AvgWord2Vec.ipynb` | Final model now uses `search.best_params_` |
-| Docs with all out-of-vocab words silently dropped, desyncing X/y | `AvgWord2Vec.ipynb` | Zero-vector fallback instead of dropping |
-| Stray `Unnamed: 0` column from `to_csv()` without `index=False` | `Preprocessing.ipynb` | `index=False` |
-| `stopwords.words('english')` reloaded per word (slow) | `Preprocessing.ipynb` | Loaded once as a `set` |
-| No fixed `random_state` on the Word2Vec split | `AvgWord2Vec.ipynb` | Added, shared `split.py` used everywhere |
-
 ## Structure
 ```
 src/
